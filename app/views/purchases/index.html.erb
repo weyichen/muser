@@ -1,0 +1,14 @@
+<table>
+ 	<tr>
+ 		<td>id</td>
+ 		<td>customer</td>
+ 		<td>date</td>
+ 	</tr>
+ 	<% @purchases.each do |purchase| %>
+ 	<tr>
+ 		<td><%= purchase.id %></td>
+ 		<td><%= purchase.customer %></td>
+ 		<td><%= purchase.date %></td>
+ 	</tr>
+ 	<% end %>
+</table>

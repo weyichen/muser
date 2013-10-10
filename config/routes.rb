@@ -1,4 +1,10 @@
 YichenweiApp::Application.routes.draw do
+  resources :purchases
+  resources :users
+  get "landing_pages/home"
+  
+  root :to => 'landing_pages#home'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
