@@ -1,4 +1,5 @@
 YichenweiApp::Application.routes.draw do
+  resources :tasklists
   resources :purchases
   resources :users
   get "landing_pages/home"
