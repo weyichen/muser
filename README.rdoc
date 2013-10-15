@@ -26,3 +26,5 @@ http://stackoverflow.com/questions/10810311/nomethoderror-undefined-method-for-n
 - Currently, there is an error with the edit page for tasklists. The create page works perfectly, but edit does not update the tasklist properly. Jason investigated this with me, and he was unable to find anything. I will ignore this for now and move on to Homework 6  
   
 Homework 6
+- No issues encountered
+- Completed the extra credit
