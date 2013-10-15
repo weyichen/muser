@@ -1,5 +1,7 @@
 class TasklistsController < ApplicationController
   def index
+    Rails.logger.warn '-'*40
+    Rails.logger.warn @fields.inspect
     @task_lists = Tasklist.all
   end
 

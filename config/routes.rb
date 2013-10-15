@@ -1,7 +1,7 @@
 YichenweiApp::Application.routes.draw do
-  resources :tasklists
   resources :purchases
   resources :users
+  resources :tasklists
   get "landing_pages/home"
   
   root :to => 'landing_pages#home'
