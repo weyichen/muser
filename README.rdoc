@@ -28,3 +28,6 @@ http://stackoverflow.com/questions/10810311/nomethoderror-undefined-method-for-n
 Homework 6
 - No issues encountered
 - Completed the extra credit
+
+Homework 7
+- I added the aaronh-chronic gem (http://rubygems.org/gems/aaronh-chronic), a natural language date parser with time zone support. I defined variables containing output of the parser in the landing pages controller, and displayed them in the home view.
