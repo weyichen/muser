@@ -3,6 +3,7 @@ YichenweiApp::Application.routes.draw do
   resources :users
   resources :tasklists
   get "landing_pages/home"
+  #get "/newrelic"
   
   root :to => 'landing_pages#home'
 

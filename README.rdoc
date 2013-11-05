@@ -31,3 +31,8 @@ Homework 6
 
 Homework 7
 - I added the aaronh-chronic gem (http://rubygems.org/gems/aaronh-chronic), a natural language date parser with time zone support. I defined variables containing output of the parser in the landing pages controller, and displayed them in the home view.
+
+Homework 8
+- I installed the New Relic heroku addon
+- When I tried to add newrelic.yml, the resulting file in config does not resemble the hosted file at all. I had to copy the file manually into config
+- The route was not set up correctly for /newrelic. I found the solution here: http://stackoverflow.com/questions/5432074/newrelic-rpm-rails-gem-showing-no-route-in-development
