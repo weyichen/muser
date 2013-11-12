@@ -36,3 +36,8 @@ Homework 8
 - I installed the New Relic heroku addon
 - When I tried to add newrelic.yml, the resulting file in config does not resemble the hosted file at all. I had to copy the file manually into config
 - The route was not set up correctly for /newrelic. I found the solution here: http://stackoverflow.com/questions/5432074/newrelic-rpm-rails-gem-showing-no-route-in-development
+
+Homework 9
+- Command used to generate todo:
+rails generate controller Todos index new edit show
+rails generate model Todo title:string priority:string description:string completed:boolean tasklist:belongs_to

@@ -1,0 +1,24 @@
+<%= form_for(@todo) do |f| %>
+  <div class="field">
+    <p>title</p>
+    <%= f.text_field :title%>
+  </div>
+  
+  <div class="field">
+    <p>priority</p>
+    <%= f.text_field :priority%>
+  </div>
+  
+  <div class="field">
+    <p>description</p>
+    <%= f.text_area :description%>
+  </div>
+  
+  <div class="field">
+    <p>tasklist</p>
+    <%= f.collection_select :tasklist_id, Tasklist.all, :id, :title%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

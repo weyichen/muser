@@ -1,4 +1,5 @@
 YichenweiApp::Application.routes.draw do
+  resources :todos
   resources :purchases
   resources :users
   resources :tasklists
