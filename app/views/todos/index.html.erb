@@ -1,7 +1,7 @@
 <table>
  	<tr>
  		<td>title</td>
- 		<td>priority</td>
+ 		<td><div class="priority">priority</div></td>
  		<td>description</td>
     <td>completed</td>
     <td>tasklist</td>
@@ -12,8 +12,9 @@
   
   <% @high_priority.each do |todo| %>
   <tr>
+  
     <td><%= todo.title %></td>
-    <td><%= todo.priority %></td>
+    <td><div class="p1"><%= todo.priority %></div></td>
     <td><%= todo.description %></td>
     <td><%= todo.completed %></td>
     <td><%= todo.tasklist.title %></td>
@@ -26,7 +27,7 @@
   <% @med_priority.each do |todo| %>
   <tr>
     <td><%= todo.title %></td>
-    <td><%= todo.priority %></td>
+    <td><div class="p2"><%= todo.priority %></div></td>
     <td><%= todo.description %></td>
     <td><%= todo.completed %></td>
     <td><%= todo.tasklist.title %></td>
@@ -39,7 +40,7 @@
   <% @low_priority.each do |todo| %>
   <tr>
     <td><%= todo.title %></td>
-    <td><%= todo.priority %></td>
+    <td><div class="p3"><%= todo.priority %></div></td>
     <td><%= todo.description %></td>
     <td><%= todo.completed %></td>
     <td><%= todo.tasklist.title %></td>

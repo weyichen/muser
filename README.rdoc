@@ -41,3 +41,6 @@ Homework 9
 - Command used to generate todo:
 rails generate controller Todos index new edit show
 rails generate model Todo title:string priority:string description:string completed:boolean tasklist:belongs_to
+
+Homework 10
+- on the todos index view, when the viewer hovers over the priority column label, high priority tasks become crimson, medium priority tasks become green, and low priority tasks become beige
