@@ -38,4 +38,6 @@ YichenweiApp::Application.configure do
   require 'new_relic/rack/developer_mode'
   config.middleware.use NewRelic::Rack::DeveloperMode
   ENV['NEWRELIC_ENABLE'] = 'true'
+  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

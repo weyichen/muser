@@ -1,0 +1,34 @@
+Final Project App: Musical Notepad
+
+Views
+Main (Login)
+- enter username/password
+- create an account
+- redirect to homepage once logged in
+
+Account Creation
+- enter username/password/email
+- redirect to homepage once account is created
+
+Main Page
+- required fields: track name and artist
+- optional: album, year, genre, cover art, link to youtube video (embed it)
+- share options: email, maybe post to facebook, twitter?
+
+Models
+Users
+rails generate model User username:string password:string
+
+Songs
+rails generate model Song track:string artist:string year:string genre:string artURL:string ytURL:string user:belongs_to
+rails generate controller Songs index new edit show
+
+Artists
+- 
+
+Genres
+
+Year
+
+
+Controllers

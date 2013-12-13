@@ -1,0 +1,21 @@
+<p>
+<table>
+  <tr>
+    <td>track</td>
+    <td>artist</td>
+    <td>artURL</td>
+    <td>genre</td>
+    <td>year</td>
+    <td>ytURL</td>
+  </tr>
+  <% @songs.each do |song| %>
+    <tr>
+      <td><%= song.title %></td>
+      <td><%= song.artist %></td>
+      <td><%= song.artURL %></td>
+    <td><%= song.genre %> </td>
+    <td><%= song.year %></td>
+    <td><%= song.ytURL %></td>
+    </tr>
+  <% end %>
+</table>

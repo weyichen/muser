@@ -4,6 +4,9 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.13'
 
+gem 'devise', '3.2.2'
+
+
 # Homework 7: add a gem
 gem 'aaronh-chronic'
 
