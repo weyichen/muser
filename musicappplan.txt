@@ -1,3 +1,40 @@
+Tasks Left
+- make delete and editing functional
+- only display current user's songs
+- different scopes to display different users songs
+- email function (heroku addon)
+- validations
+- scopes
+
+- fix art url form width
+- fix create song button
+
+Validations
+1. For each track, track name and artist are required.
+2. The YouTube video URL must begin with: "http:\/\/www.youtube.com\/watch"
+
+Resources used
+1.
+2.
+
+Gems used
+1. auto_html: https://github.com/dejan/auto_html
+I used it to automatically parse YouTube links into HTML code for an embedded video.
+
+2. devise: https://github.com/plataformatec/devise#getting-started
+I used it to create a login system for my app.
+
+Heroku Addons used
+1. newrelic
+
+2.
+
+Resources
+- Posting forms with JSON: http://guides.rubyonrails.org/form_helpers.html
+- Active Record Migrations: http://guides.rubyonrails.org/migrations.html
+- Gem for converting regular YouTube link to embedded video: https://github.com/dejan/auto_html
+- devise: https://github.com/plataformatec/devise#getting-started
+
 Final Project App: Musical Notepad
 
 Views

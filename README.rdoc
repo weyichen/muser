@@ -1,6 +1,38 @@
 == README
-
+Final Project - Muser
 http://ancient-taiga-6831.herokuapp.com/
+
+A musical notepad. Once registered, a user can post songs on the app, along with the accompanying album art and YouTube video. The user can create a musical profile with their favorite song, lyric, band, etc.
+
+Resources:
+1. Users: users can create an account, look up the list of all accounts, edit their profile information, and delete their own account.
+
+2. Songs: users can post songs, see the list of songs, and edit and delete songs they have posted.
+
+Validations
+1. For each song, the track name is required
+2. For each song, the artist name is required.
+
+Scopes
+1. Best songs: songs with a rating of 5
+2. Worst songs: songs with a rating of 1
+3. Other songs: songs with a rating of 2, 3, or 4
+
+Gems used
+1. auto_html: https://github.com/dejan/auto_html
+I used it to automatically parse YouTube links into HTML code for an embedded video.
+
+2. devise: https://github.com/plataformatec/devise#getting-started
+I used it to create a login system for my app.
+
+3. aaronh-chronic gem http://rubygems.org/gems/aaronh-chronic
+I used a natural language date parser to display a date on my app.
+
+Heroku Addons used
+1. newrelic: https://devcenter.heroku.com/articles/newrelic
+New Relic allows performance management of the app.
+ 
+----------------------- HOMEWORK -----------------------
 
 Issues encountered:
 

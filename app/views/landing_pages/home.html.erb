@@ -1,23 +1,252 @@
-<a href='/users/'>Users index</a><br>
-<a href='/users/new/'>Create new user</a>
-<br><br>
-<a href='/tasklists/'>Tasklists index</a><br>
-<a href='/tasklists/new/'>Create new tasklist</a>
-<br><br>
-<a href='/purchases/'>Purchases index</a>
-<br><br>
-Add a scope to Todos
-<br>
-<a href='/todos/'>Todos index</a>
-<a href='/todos/new/'>Create new todo</a>
+<head>
+</head>
 
-<br><br>
-Add a gem: <a href='http://rubygems.org/gems/aaronh-chronic'>aaronh-chronic</a>
-<br>
-"A natural language date parser."
-<br><br>
-The time right now is <%= @current %>.
-<br>
-The date tomorrow will be <%= @tomorrow %>.
-<br>
-The date one year ago was <%= @oneyearago %>.
+<body>
+
+<table id="songtable" class="table table-hover">
+  <tr>
+    <td width=100>Art</td>
+    <td>Track</td>
+    <td>Artist</td>
+    <td>Album</td>
+    <td>Genre</td>
+    <td>Year</td>
+    <td>Video</td>
+    <td>Created By</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><a data-toggle="modal" data-target="#modalArt" class="thumbnail"><img src="http://upload.wikimedia.org/wikipedia/en/7/73/Walk_the_Moon_Album.jpg" height="100" width="100"></a></td>
+    <td>Quesadilla</td>
+    <td>Walk The Moon</td>
+    <td>Walk The Moon</td>
+    <td>Alt. Rock</td>
+    <td>2012</td>
+    <td>Watch Video</td>
+    <td>Example</td>
+    <td><button type="button" class="close" aria-hidden="true">&times;</button></td>
+    
+  </tr>
+  
+  <tr>
+    <td><a href="#" class="thumbnail"><img src="http://upload.wikimedia.org/wikipedia/en/7/73/Walk_the_Moon_Album.jpg" height="100" width="100"></a></td>
+    <td>Anna Sun</td>
+    <td>Walk The Moon</td>
+    <td>Walk The Moon</td>
+    <td>Alt. Rock</td>
+    <td>2012</td>
+    <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">Watch Video</button></td>
+    <td>Example</td>
+    <td><button type="button" class="close" aria-hidden="true">&times;</button></td>
+    
+  </tr>
+  
+</table>
+
+<div id="messages"></div>
+
+<p class="text-center" id="newbutton"><button class="btn btn-primary btn" onclick="newTrack()">Add New Track</button></p>
+
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
+
+<div id="modalStore">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <iframe width="560" height="315" src="//www.youtube.com/embed/98jijv5-xOg" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="modalArt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <img src="http://upload.wikimedia.org/wikipedia/en/7/73/Walk_the_Moon_Album.jpg">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  </div><!-- /.modal -->
+</div>
+
+</body>
+
+<script type=application/javascript>
+
+  $('.collapse').collapse({toggle: true}); 
+
+  // retrieve the table as a JS variable
+  var songTable = $("#songtable")[0];
+  
+  // retrieve the list of songs
+  var songList;
+  $.getJSON("/get_songs", function(data) {
+    songList = data;
+    
+    // populate the table
+    var newRow;
+    for (var i=0; i<songList.length; i++) {
+      var theSong = songList[i];
+      
+      var videoModalLabel = theSong.id+"VideoModal";
+      var videoTitleLabel = theSong.id+"VideoTitle";
+      var artModalLabel = theSong.id+"ArtModal";
+      var artTitleLabel = theSong.id+"ArtTitle";
+      var modalTitle = theSong.track +" - "+ theSong.artist;
+      
+      var trackRow = "<td><a data-toggle=\"modal\" data-target=\"#" +artModalLabel+ "\" class=\"thumbnail\">" +
+      "<img src=\"" +theSong.artURL+ "\" height=\"100\" width=\"100\"></a></td>" +
+      "<td>" +theSong.track+ "</td>" +
+      "<td>" +theSong.artist+ "</td>" +
+      "<td>" +theSong.album+ "</td>" +
+      "<td>" +theSong.genre+ "</td>" +
+      "<td>" +theSong.year+ "</td>" +
+      "<td><button class=\"btn btn-primary btn\" data-toggle=\"modal\" data-target=\"#" +videoModalLabel+ "\">Watch Video</button></td>" +
+      "<td>" +theSong.user+ "</td>" +
+      
+      "<a href=\"/songs/" +theSong.id+ "data-method="delete" rel="nofollow">destroy song</a>
+      "<td><button type=\"button\" class=\"close\" aria-hidden=\"true\" onclick=\"location.href=\"  \">&times;</button>"+theSong.id+"</td>"
+      ;
+      
+      newRow = songTable.insertRow(-1);
+      newRow.innerHTML = trackRow;
+      
+      // don't forget to add modals for the album art and video!
+      var modal = "<div class=\"modal fade\" id=\"" +videoModalLabel+ "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"" +videoTitleLabel+ "\" aria-hidden=\"true\">"+
+        "<div class=\"modal-dialog\">"+
+        "<div class=\"modal-content\">"+
+        "<div class=\"modal-header\">"+
+        "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"+
+        "<h4 class=\"modal-title\" id=\"" +videoTitleLabel+ "\">" +modalTitle+ "</h4>"+
+        "</div>"+
+        "<div class=\"modal-body\">"+
+        theSong.ytURL+
+        "</div>"+
+        "<div class=\"modal-footer\">"+
+        "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>"+
+        "</div>"+
+        "</div>"+
+        "</div>"+
+        "</div>"+
+
+        "<div class=\"modal fade\" id=\"" +artModalLabel+ "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"" +artTitleLabel +"\" aria-hidden=\"true\">"+
+        "<div class=\"modal-dialog\">"+
+        "<div class=\"modal-content\">"+
+        "<div class=\"modal-header\">"+
+        "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>"+
+        "<h4 class=\"modal-title\" id=\"" +artTitleLabel+ "\">" +modalTitle+ "</h4>"+
+        "</div>"+
+        "<div class=\"modal-body\">"+
+        "<img src=\"" +theSong.artURL+ "\">"+
+        "</div>"+
+        "<div class=\"modal-footer\">"+
+        "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>"+
+        "</div>"+
+        "</div>"+
+        "</div>"+
+        "</div>"+
+        "</div>";
+        
+        document.getElementById("modalStore").innerHTML += modal;
+      
+    }
+    
+  });
+  
+  var trackform = "<form>" +
+    "<td><input type=\"text\" id=\"artURL\" size=10 value=\"Art URL\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"track\" value=\"Track Title\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"artist\" value=\"Artist\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"album\" value=\"Album\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"genre\" value=\"Genre\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"year\" value=\"Year\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"video\" value=\"YouTube URL\" onclick=\"this.value=\'\'\"></td>" +
+    "<td></td><td></td>" +
+    "</form>";
+    
+  var newButton = "<button class=\"btn btn-primary btn\" onclick=\"newTrack()\">Add New Track</button>";
+  var addButton = "<button class=\"btn btn-primary btn\" onclick=\"addTrack()\">Confirm</button>";
+  
+  var newTrack = function() {
+    newRow = songTable.insertRow(-1);
+    newRow.innerHTML = trackform;
+    
+    document.getElementById("newbutton").innerHTML = addButton;
+  };
+  
+  // confirm button adds track to database
+  var addTrack = function() {
+    var artURL = $("#artURL")[0].value;
+    var track = $("#track")[0].value;
+    var artist = $("#artist")[0].value;
+    var album = $("#album")[0].value;
+    var genre = $("#genre")[0].value;
+    var year = $("#year")[0].value;
+    var video = $("#video")[0].value;
+  
+    var newTrackRow = "<td><a data-toggle=\"modal\" data-target=\"#modalArt\" class=\"thumbnail\">" +
+    "<img src=\"" +artURL+ "\" height=\"100\" width=\"100\"></a></td>" +
+    "<td>" +track+ "</td>" +
+    "<td>" +artist+ "</td>" +
+    "<td>" +album+ "</td>" +
+    "<td>" +genre+ "</td>" +
+    "<td>" +year+ "</td>" +
+    "<td>" +video+ "</td>";
+  
+    newRow.innerHTML = newTrackRow;
+    document.getElementById("newbutton").innerHTML = newButton;
+    
+    var errmsg;
+    
+    // add track to database
+    $.post("/add_song", {
+      "song[artURL]":artURL, 
+      "song[track]":track, 
+      "song[artist]":artist, 
+      "song[album]":album, 
+      "song[genre]":genre, 
+      "song[year]":year, 
+      "song[ytURL]":video
+    }, function(data) {
+      errmsg = data;
+      
+      //document.getElementById("messages").innerHTML = "";
+    });
+  };
+  
+  // not working... what do we pass in as an id?
+  var deleteTrack = function(id) {
+    $.post("/delete_song", {"song[id]":id});
+  };
+  
+  var results;
+  $.getJSON("/get_users", function(data) {
+    results = data;
+  });
+  
+</script>

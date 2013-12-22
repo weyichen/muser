@@ -1,0 +1,52 @@
+<table>
+ 	<tr>
+ 		<td>title</td>
+ 		<td><div class="priority">priority</div></td>
+ 		<td>description</td>
+    <td>completed</td>
+    <td>tasklist</td>
+    <td>show</td>
+    <td>edit</td>
+    <td>destroy</td>
+ 	</tr>
+  
+  <% @high_priority.each do |todo| %>
+  <tr>
+  
+    <td><%= todo.title %></td>
+    <td><div class="p1"><%= todo.priority %></div></td>
+    <td><%= todo.description %></td>
+    <td><%= todo.completed %></td>
+    <td><%= todo.tasklist.title %></td>
+    <td><%= link_to "show", todo_path(todo.id) %></td>
+    <td><%= link_to "edit", edit_todo_path(todo.id) %></td>
+    <td><%= link_to "destroy", todo, confirm: "you sure you want to do this?", method: :delete %></td>
+  </tr>
+  <% end %>
+
+  <% @med_priority.each do |todo| %>
+  <tr>
+    <td><%= todo.title %></td>
+    <td><div class="p2"><%= todo.priority %></div></td>
+    <td><%= todo.description %></td>
+    <td><%= todo.completed %></td>
+    <td><%= todo.tasklist.title %></td>
+    <td><%= link_to "show", todo_path(todo.id) %></td>
+    <td><%= link_to "edit", edit_todo_path(todo.id) %></td>
+    <td><%= link_to "destroy", todo, confirm: "you sure you want to do this?", method: :delete %></td>
+  </tr>
+  <% end %>
+
+  <% @low_priority.each do |todo| %>
+  <tr>
+    <td><%= todo.title %></td>
+    <td><div class="p3"><%= todo.priority %></div></td>
+    <td><%= todo.description %></td>
+    <td><%= todo.completed %></td>
+    <td><%= todo.tasklist.title %></td>
+    <td><%= link_to "show", todo_path(todo.id) %></td>
+    <td><%= link_to "edit", edit_todo_path(todo.id) %></td>
+    <td><%= link_to "destroy", todo, confirm: "you sure you want to do this?", method: :delete %></td>
+  </tr>
+  <% end %>
+</table>

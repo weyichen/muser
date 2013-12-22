@@ -1,13 +1,102 @@
-<%= form_for(@song) do |f| %>
-  <div class="field">
-    <p>Track Title</p>
-    <%= f.text_field :track%>
-  </div>
-  <div class="field">
-    <p>Artist</p>
-    <%= f.text_field :artist%>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<body>
+
+<div id="messages"> 
+  <% if @song.errors.any? %>
+    <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    </ul>  
+   <% end %>
+</div>  
+
+<table id="songtable" class="table table-hover">
+  <tr>
+    <td width=100>Art (Enter URL)</td>
+    <td>Track</td>
+    <td>Artist</td>
+    <td>Album</td>
+    <td>Genre</td>
+    <td>Year</td>
+    <td>Video (Enter YouTube URL)</td>
+    <td>Rating</td>
+    <td>Created By</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <%= form_for(@song) do |f| %>
+      <td><%= f.text_field :artURL, size: 10%></td>
+      <td><%= f.text_field :track, size: 17%></td>
+      <td><%= f.text_field :artist, size: 17%></td>
+      <td><%= f.text_field :album, size: 17%></td>
+      <td><%= f.text_field :genre, size: 17%></td>
+    <td><%= f.text_field :year, size: 5%></td>
+    <td><%= f.text_field :ytURL, size: 17%></td>
+    <td><%= f.select :rating, options_for_select(['1', '2', '3', '4', '5'])%></td>
+    <td colspan=3><%= f.submit %></td>
+    <% end %>
+  </tr>
+  
+  <% @songs.each do |song| %>
+    <tr>
+      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
+      <td><%= song.track %></td>
+      <td><%= song.artist %></td>
+      <td><%= song.album %></td>
+      <td><%= song.genre %></td>
+      <td><%= song.year %></td>
+      <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
+      <td><%= song.rating %></td>
+      <td><%= song.username %></td>
+      
+      <% if current_user.name == song.username%>
+        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
+        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
+      <% else %>
+        <td></td>
+        <td></td>
+      <% end %>
+      
+    </tr>
+  <% end %>
+  
+</table>
+
+<% @songs.each do |song| %>
+  <div class="modal fade" id="<%= song.id %>Video" tabindex="-1" role="dialog" aria-labelledby="<%= song.id %>VideoTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="<%= song.id %>VideoTitle"><%= song.track %> - <%= song.artist %></h4>
+        </div>
+        <div class="modal-body">
+          <%=raw song.ytEmbed %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+  <div class="modal fade" id="<%= song.id %>Art" tabindex="-1" role="dialog" aria-labelledby="<%= song.id %>ArtTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="<%= song.id %>ArtTitle"><%= song.track %> - <%= song.artist %></h4>
+        </div>
+        <div class="modal-body">
+          <img src=<%= song.artURL %>>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal --> 
 <% end %>
+
+</body>

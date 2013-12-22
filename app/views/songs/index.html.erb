@@ -1,21 +1,197 @@
-<p>
-<table>
+<body>
+<% if user_signed_in? %>
+
+<p class="text-center" id="newbutton"><a class="btn btn-primary btn" href="/songs/new">Add New Track</a></p>
+
+<table id="songtable" class="table table-hover">
   <tr>
-    <td>track</td>
-    <td>artist</td>
-    <td>artURL</td>
-    <td>genre</td>
-    <td>year</td>
-    <td>ytURL</td>
+    <td width=100>Art</td>
+    <td>Track</td>
+    <td>Artist</td>
+    <td>Album</td>
+    <td>Genre</td>
+    <td>Year</td>
+    <td>Video</td>
+    <td>Rating</td>
+    <td>Created By</td>
+    <td></td>
+    <td></td>
   </tr>
-  <% @songs.each do |song| %>
+  
+  <tr><td colspan='11' align=center>Best Songs</td></tr>
+  <% @rating5.each do |song| %>
     <tr>
-      <td><%= song.title %></td>
+      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
+      <td><%= song.track %></td>
       <td><%= song.artist %></td>
-      <td><%= song.artURL %></td>
-    <td><%= song.genre %> </td>
-    <td><%= song.year %></td>
-    <td><%= song.ytURL %></td>
+      <td><%= song.album %></td>
+      <td><%= song.genre %></td>
+      <td><%= song.year %></td>
+      <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
+      <td><%= song.rating %></td>
+      <td><%= song.username %></td>
+      
+      <% if current_user.name == song.username%>
+        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
+        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
+      <% else %>
+        <td></td>
+        <td></td>
+      <% end %>
+      
+    </tr>  
+  <% end %>
+  <tr><td colspan='11' align=center>Average Songs</td></tr>
+  
+  <% @rating42.each do |song| %>
+    <tr>
+      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
+      <td><%= song.track %></td>
+      <td><%= song.artist %></td>
+      <td><%= song.album %></td>
+      <td><%= song.genre %></td>
+      <td><%= song.year %></td>
+      <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
+      <td><%= song.rating %></td>
+      <td><%= song.username %></td>
+      
+      <% if current_user.name == song.username%>
+        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
+        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
+      <% else %>
+        <td></td>
+        <td></td>
+      <% end %>
+      
     </tr>
   <% end %>
+  
+  <tr><td colspan='11' align=center>Worst Songs</td>
+  <% @rating1.each do |song| %>
+    <tr>
+      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
+      <td><%= song.track %></td>
+      <td><%= song.artist %></td>
+      <td><%= song.album %></td>
+      <td><%= song.genre %></td>
+      <td><%= song.year %></td>
+      <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
+      <td><%= song.rating %></td>
+      <td><%= song.username %></td>
+      
+      <% if current_user.name == song.username%>
+        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
+        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
+      <% else %>
+        <td></td>
+        <td></td>
+      <% end %>
+      
+    </tr>
+  <% end %>
+  
 </table>
+
+<% @songs.each do |song| %>
+  <div class="modal fade" id="<%= song.id %>Video" tabindex="-1" role="dialog" aria-labelledby="<%= song.id %>VideoTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="<%= song.id %>VideoTitle"><%= song.track %> - <%= song.artist %></h4>
+        </div>
+        <div class="modal-body">
+          <%=raw song.ytEmbed %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+  <div class="modal fade" id="<%= song.id %>Art" tabindex="-1" role="dialog" aria-labelledby="<%= song.id %>ArtTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="<%= song.id %>ArtTitle"><%= song.track %> - <%= song.artist %></h4>
+        </div>
+        <div class="modal-body">
+          <img src=<%= song.artURL %>>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal --> 
+
+<% end %>
+
+<div id="messages"></div>
+
+<% else %>
+Please sign in or create an account first!
+<% end %>
+
+</body>
+<script type=application/javascript>
+
+  // retrieve the table as a JS variable
+  var songTable = $("#songtable")[0];
+  
+  var trackform = "<form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" id=\"new_song\" method=\"post\">" +
+    "<td><input type=\"text\" id=\"song_artURL\" name=\"song[artURL]\" size=10 value=\"Art URL\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_track\" name=\"song[track]\" value=\"Track Title\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_artist\" name=\"song[artist]\" value=\"Artist\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_album\" name=\"song[album]\" value=\"Album\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_genre\" name=\"song[genre]\" value=\"Genre\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_year\" name=\"song[year]\" value=\"Year\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_ytURL\" name=\"song[ytURL]\" value=\"YouTube URL\" onclick=\"this.value=\'\'\"></td>" +
+    "<td></td><td></td><td></td>" +
+    "<p class=\"text-center\"><input class=\"btn btn-primary btn\" name=\"commit\" type=\"submit\" value=\"Create Song\">" +
+    "</form>";
+    
+  var newButton = "<button class=\"btn btn-primary btn\" onclick=\"newTrack()\">Add New Track</button>";
+  var addButton = "<button class=\"btn btn-primary btn\" onclick=\"addTrack()\">Confirm</button>";
+  
+  var newTrack = function() {
+    newRow = songTable.insertRow(-1);
+    newRow.innerHTML = trackform;
+    
+    document.getElementById("newbutton").innerHTML = "";
+  };
+  
+  // confirm button adds track to database
+  var addTrack = function() {
+    var artURL = $("#artURL")[0].value;
+    var track = $("#track")[0].value;
+    var artist = $("#artist")[0].value;
+    var album = $("#album")[0].value;
+    var genre = $("#genre")[0].value;
+    var year = $("#year")[0].value;
+    var video = $("#video")[0].value;
+  
+    newRow.innerHTML = newTrackRow;
+    document.getElementById("newbutton").innerHTML = newButton;
+    
+    var errmsg;
+    
+    // add track to database
+    $.post("/add_song", {
+      "song[artURL]":artURL, 
+      "song[track]":track, 
+      "song[artist]":artist, 
+      "song[album]":album, 
+      "song[genre]":genre, 
+      "song[year]":year, 
+      "song[ytURL]":video
+    }, function(data) {
+      errmsg = data;
+      
+      //document.getElementById("messages").innerHTML = "";
+    });
+  };
+  
+</script>

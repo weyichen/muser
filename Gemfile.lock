@@ -31,6 +31,9 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     atomic (1.1.14)
+    auto_html (1.6.0)
+      redcarpet (~> 2.0)
+      rinku (~> 1.5.0)
     bcrypt-ruby (3.1.2-x86-mingw32)
     builder (3.0.4)
     coffee-rails (3.2.2)
@@ -89,6 +92,8 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (2.3.0)
+    rinku (1.5.1)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -119,6 +124,7 @@ PLATFORMS
 
 DEPENDENCIES
   aaronh-chronic
+  auto_html
   coffee-rails (~> 3.2.1)
   devise (= 3.2.2)
   jquery-rails

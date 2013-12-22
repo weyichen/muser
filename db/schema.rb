@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213200031) do
+ActiveRecord::Schema.define(:version => 20131221205944) do
 
   create_table "musers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(:version => 20131213200031) do
     t.string   "ytURL"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "album"
+    t.string   "user"
+    t.string   "ytEmbed"
+    t.string   "username"
+    t.string   "rating"
   end
 
   create_table "tasklists", :force => true do |t|
@@ -85,6 +90,13 @@ ActiveRecord::Schema.define(:version => 20131213200031) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "favgenre"
+    t.string   "favsong"
+    t.string   "favartist"
+    t.string   "favalbum"
+    t.string   "favlyric"
+    t.string   "favvideo"
+    t.string   "favideoEmbed"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

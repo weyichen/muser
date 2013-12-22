@@ -2,16 +2,6 @@ YichenweiApp::Application.routes.draw do
 
   devise_for :users
 
-  get "musers/index"
-
-  get "musers/new"
-
-  get "musers/edit"
-
-  get "musers/show"
-
-  devise_for :musers
-
   resources :songs
   resources :todos
   resources :purchases
@@ -20,8 +10,13 @@ YichenweiApp::Application.routes.draw do
   get "landing_pages/home"
   #get "/newrelic"
   
-  root :to => 'landing_pages#home'
-  match 'songs' => 'songs#index'
+  root :to => 'songs#index'
+  
+  match 'get_users' => 'users#index'
+  
+  match 'get_songs' => 'songs#index'
+  match 'add_song' => 'songs#create'
+  match 'delete_song' => 'songs#destroy'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

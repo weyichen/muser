@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  respond_to :json, :html, :xml
+
   def index
-  @users=User.all
+    respond_with(@users = User.all)
+  #@users=User.all
   end
   
   def new
