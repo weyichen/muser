@@ -1,0 +1,45 @@
+/home/daniel/.rvm/rubies/ruby-head/bin/ruby -r ./siteconf20140907-21288-dd48pn.rb extconf.rb "--with-sqlite3-include=/home/daniel/include --with-sqlite3-lib=/home/daniel/lib --with-sqlite3-dir=/home/daniel/bin"
+checking for sqlite3.h... yes
+checking for sqlite3_libversion_number() in -lsqlite3... yes
+checking for rb_proc_arity()... yes
+checking for sqlite3_initialize()... yes
+checking for sqlite3_backup_init()... yes
+checking for sqlite3_column_database_name()... yes
+checking for sqlite3_enable_load_extension()... yes
+checking for sqlite3_load_extension()... yes
+checking for sqlite3_open_v2()... yes
+checking for sqlite3_prepare_v2()... yes
+checking for sqlite3_int64 in sqlite3.h... yes
+checking for sqlite3_uint64 in sqlite3.h... yes
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling statement.c
+statement.c: In function ‘bind_param’:
+statement.c:261:7: warning: implicit declaration of function ‘RBIGNUM’ [-Wimplicit-function-declaration]
+       if (RBIGNUM_LEN(value) * SIZEOF_BDIGITS <= 8) {
+       ^
+In file included from statement.c:1:0:
+./sqlite3_ruby.h:16:34: error: invalid type argument of ‘->’ (have ‘int’)
+ #define RBIGNUM_LEN(x) RBIGNUM(x)->len
+                                  ^
+statement.c:261:11: note: in expansion of macro ‘RBIGNUM_LEN’
+       if (RBIGNUM_LEN(value) * SIZEOF_BDIGITS <= 8) {
+           ^
+statement.c:261:32: error: ‘SIZEOF_BDIGITS’ undeclared (first use in this function)
+       if (RBIGNUM_LEN(value) * SIZEOF_BDIGITS <= 8) {
+                                ^
+statement.c:261:32: note: each undeclared identifier is reported only once for each function it appears in
+statement.c: In function ‘reset_bang’:
+statement.c:293:7: warning: variable ‘status’ set but not used [-Wunused-but-set-variable]
+   int status;
+       ^
+statement.c: In function ‘clear_bindings’:
+statement.c:313:7: warning: variable ‘status’ set but not used [-Wunused-but-set-variable]
+   int status;
+       ^
+make: *** [statement.o] Error 1
+
+make failed, exit code 2

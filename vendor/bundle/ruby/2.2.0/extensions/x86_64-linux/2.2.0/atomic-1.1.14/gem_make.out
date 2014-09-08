@@ -1,0 +1,11 @@
+/home/daniel/.rvm/rubies/ruby-head/bin/ruby -r ./siteconf20140907-17822-fsundl.rb extconf.rb 
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling atomic_reference.c
+linking shared-object atomic_reference.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 atomic_reference.so ./.gem.20140907-17822-1vuyzmq

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.1.2'
 
 gem 'rails', '3.2.13'
 
@@ -19,7 +19,7 @@ gem 'newrelic_rpm'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.8'
 end
 group :production do
   gem 'pg'

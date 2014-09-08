@@ -1,0 +1,24 @@
+"gcc -o conftest -I/home/daniel/.rvm/rubies/ruby-head/include/ruby-2.2.0/x86_64-linux -I/home/daniel/.rvm/rubies/ruby-head/include/ruby-2.2.0/ruby/backward -I/home/daniel/.rvm/rubies/ruby-head/include/ruby-2.2.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat  -fPIC conftest.c  -L. -L/home/daniel/.rvm/rubies/ruby-head/lib -Wl,-R/home/daniel/.rvm/rubies/ruby-head/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R/home/daniel/.rvm/rubies/ruby-head/lib -L/home/daniel/.rvm/rubies/ruby-head/lib -lruby  -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/daniel/.rvm/rubies/ruby-head/include/ruby-2.2.0/x86_64-linux -I/home/daniel/.rvm/rubies/ruby-head/include/ruby-2.2.0/ruby/backward -I/home/daniel/.rvm/rubies/ruby-head/include/ruby-2.2.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat  -fPIC conftest.c  -L. -L/home/daniel/.rvm/rubies/ruby-head/lib -Wl,-R/home/daniel/.rvm/rubies/ruby-head/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R/home/daniel/.rvm/rubies/ruby-head/lib -L/home/daniel/.rvm/rubies/ruby-head/lib -lruby  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat  -fPIC -lpthread -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {
+4:   int i = 1;
+5:   __sync_bool_compare_and_swap(&i, 1, 4);
+6:   return (i != 4);
+7: }
+/* end */
+
+./conftest
