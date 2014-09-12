@@ -9,12 +9,7 @@ class SongsController < ApplicationController
   end
 
   def new
-    #@songs = Song.all
-    #@rating5 = Song.rating5
-    #@rating42 = Song.rating42
-    #@rating1 = Song.rating1
-    
-    #@song = Song.new
+
   end
 
   def create
@@ -31,12 +26,6 @@ class SongsController < ApplicationController
       end
     end
         
-    
-    #@songs = Song.all
-    #@rating5 = Song.rating5
-    #@rating42 = Song.rating42
-    #@rating1 = Song.rating1
-    
    # if @song.save
       # mark song as created by the current user
     #  @song.update_attribute(:user, current_user)

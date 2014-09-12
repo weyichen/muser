@@ -1,7 +1,4 @@
 <body>
-<% if user_signed_in? %>
-
-<p class="text-center" id="newbutton"><a class="btn btn-primary btn" href="/songs/new">Add New Track</a></p>
 
 <table id="songtable" class="table table-hover">
   <tr>
@@ -17,9 +14,33 @@
     <td></td>
     <td></td>
   </tr>
+
+  <tr>
+    <td colspan=11>
+  <% if user_signed_in? %>
+<p class="text-center" id="newbutton"><a class="btn btn-primary btn" onclick="newTrack()">Add New Track</a></p>
+<% else %>
+<p class="text-center"> Please sign in or create an account to add tracks! </p>
+<% end %>
+</td>
+  </tr>
+
+  <tr id="songform">
+    <%= form_for(@song, remote: true) do |f| %>
+      <td><%= f.text_field :artURL, size: 10%></td>
+      <td><%= f.text_field :track, size: 17%></td>
+      <td><%= f.text_field :artist, size: 17%></td>
+      <td><%= f.text_field :album, size: 17%></td>
+      <td><%= f.text_field :genre, size: 17%></td>
+    <td><%= f.text_field :year, size: 5%></td>
+    <td><%= f.text_field :ytURL, size: 17%></td>
+    <td><%= f.select :rating, options_for_select(['5', '4', '3', '2', '1'])%></td>
+    <td colspan=3><%= f.submit %></td>
+    <% end %>
+
+  </tr>
   
-  <tr><td colspan='11' align=center>Best Songs</td></tr>
-  <% @rating5.each do |song| %>
+  <% @songs.each do |song| %>
     <tr>
       <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
       <td><%= song.track %></td>
@@ -31,63 +52,17 @@
       <td><%= song.rating %></td>
       <td><%= song.username %></td>
       
+      <% if user_signed_in? %>
       <% if current_user.name == song.username%>
         <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
         <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
       <% else %>
         <td></td>
         <td></td>
+      <% end %>
       <% end %>
       
     </tr>  
-  <% end %>
-  <tr><td colspan='11' align=center>Average Songs</td></tr>
-  
-  <% @rating42.each do |song| %>
-    <tr>
-      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
-      <td><%= song.track %></td>
-      <td><%= song.artist %></td>
-      <td><%= song.album %></td>
-      <td><%= song.genre %></td>
-      <td><%= song.year %></td>
-      <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
-      <td><%= song.rating %></td>
-      <td><%= song.username %></td>
-      
-      <% if current_user.name == song.username%>
-        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
-        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
-      <% else %>
-        <td></td>
-        <td></td>
-      <% end %>
-      
-    </tr>
-  <% end %>
-  
-  <tr><td colspan='11' align=center>Worst Songs</td>
-  <% @rating1.each do |song| %>
-    <tr>
-      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
-      <td><%= song.track %></td>
-      <td><%= song.artist %></td>
-      <td><%= song.album %></td>
-      <td><%= song.genre %></td>
-      <td><%= song.year %></td>
-      <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
-      <td><%= song.rating %></td>
-      <td><%= song.username %></td>
-      
-      <% if current_user.name == song.username%>
-        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
-        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
-      <% else %>
-        <td></td>
-        <td></td>
-      <% end %>
-      
-    </tr>
   <% end %>
   
 </table>
@@ -126,72 +101,17 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal --> 
-
 <% end %>
 
 <div id="messages"></div>
 
-<% else %>
-Please sign in or create an account first!
-<% end %>
-
 </body>
 <script type=application/javascript>
+  $(songform)[0].style.display = "none";
 
-  // retrieve the table as a JS variable
-  var songTable = $("#songtable")[0];
-  
-  var trackform = "<form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" id=\"new_song\" method=\"post\">" +
-    "<td><input type=\"text\" id=\"song_artURL\" name=\"song[artURL]\" size=10 value=\"Art URL\" onclick=\"this.value=\'\'\"></td>" +
-    "<td><input type=\"text\" id=\"song_track\" name=\"song[track]\" value=\"Track Title\" onclick=\"this.value=\'\'\"></td>" +
-    "<td><input type=\"text\" id=\"song_artist\" name=\"song[artist]\" value=\"Artist\" onclick=\"this.value=\'\'\"></td>" +
-    "<td><input type=\"text\" id=\"song_album\" name=\"song[album]\" value=\"Album\" onclick=\"this.value=\'\'\"></td>" +
-    "<td><input type=\"text\" id=\"song_genre\" name=\"song[genre]\" value=\"Genre\" onclick=\"this.value=\'\'\"></td>" +
-    "<td><input type=\"text\" id=\"song_year\" name=\"song[year]\" value=\"Year\" onclick=\"this.value=\'\'\"></td>" +
-    "<td><input type=\"text\" id=\"song_ytURL\" name=\"song[ytURL]\" value=\"YouTube URL\" onclick=\"this.value=\'\'\"></td>" +
-    "<td></td><td></td><td></td>" +
-    "<p class=\"text-center\"><input class=\"btn btn-primary btn\" name=\"commit\" type=\"submit\" value=\"Create Song\">" +
-    "</form>";
-    
-  var newButton = "<button class=\"btn btn-primary btn\" onclick=\"newTrack()\">Add New Track</button>";
-  var addButton = "<button class=\"btn btn-primary btn\" onclick=\"addTrack()\">Confirm</button>";
-  
   var newTrack = function() {
-    newRow = songTable.insertRow(-1);
-    newRow.innerHTML = trackform;
-    
-    document.getElementById("newbutton").innerHTML = "";
-  };
-  
-  // confirm button adds track to database
-  var addTrack = function() {
-    var artURL = $("#artURL")[0].value;
-    var track = $("#track")[0].value;
-    var artist = $("#artist")[0].value;
-    var album = $("#album")[0].value;
-    var genre = $("#genre")[0].value;
-    var year = $("#year")[0].value;
-    var video = $("#video")[0].value;
-  
-    newRow.innerHTML = newTrackRow;
-    document.getElementById("newbutton").innerHTML = newButton;
-    
-    var errmsg;
-    
-    // add track to database
-    $.post("/add_song", {
-      "song[artURL]":artURL, 
-      "song[track]":track, 
-      "song[artist]":artist, 
-      "song[album]":album, 
-      "song[genre]":genre, 
-      "song[year]":year, 
-      "song[ytURL]":video
-    }, function(data) {
-      errmsg = data;
-      
-      //document.getElementById("messages").innerHTML = "";
-    });
-  };
+  $(newbutton)[0].style.display = "none";
+  $(songform)[0].style.display = "table-row";
+  }
   
 </script>

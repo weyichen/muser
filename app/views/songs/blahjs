@@ -1,0 +1,56 @@
+
+  // retrieve the table as a JS variable
+  var songTable = $("#songtable")[0];
+  
+  var trackform = "<form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" id=\"new_song\" method=\"post\">" +
+    "<td><input type=\"text\" id=\"song_artURL\" name=\"song[artURL]\" size=10 value=\"Art URL\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_track\" name=\"song[track]\" value=\"Track Title\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_artist\" name=\"song[artist]\" value=\"Artist\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_album\" name=\"song[album]\" value=\"Album\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_genre\" name=\"song[genre]\" value=\"Genre\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_year\" name=\"song[year]\" value=\"Year\" onclick=\"this.value=\'\'\"></td>" +
+    "<td><input type=\"text\" id=\"song_ytURL\" name=\"song[ytURL]\" value=\"YouTube URL\" onclick=\"this.value=\'\'\"></td>" +
+    "<td></td><td></td><td></td>" +
+    "<p class=\"text-center\"><input class=\"btn btn-primary btn\" name=\"commit\" type=\"submit\" value=\"Create Songg\">" +
+    "</form>";
+    
+  var newButton = "<button class=\"btn btn-primary btn\" onclick=\"newTrack()\">Add New Track</button>";
+  var addButton = "<button class=\"btn btn-primary btn\" onclick=\"addTrack()\">Confirm</button>";
+  
+  var newTrack = function() {
+    newRow = songTable.insertRow(-1);
+    newRow.innerHTML = trackform;
+    
+    document.getElementById("newbutton").innerHTML = "";
+  };
+  
+  // confirm button adds track to database
+  var addTrack = function() {
+    var artURL = $("#artURL")[0].value;
+    var track = $("#track")[0].value;
+    var artist = $("#artist")[0].value;
+    var album = $("#album")[0].value;
+    var genre = $("#genre")[0].value;
+    var year = $("#year")[0].value;
+    var video = $("#video")[0].value;
+  
+    newRow.innerHTML = newTrackRow;
+    document.getElementById("newbutton").innerHTML = newButton;
+    
+    var errmsg;
+    
+    // add track to database
+    $.post("/add_song", {
+      "song[artURL]":artURL, 
+      "song[track]":track, 
+      "song[artist]":artist, 
+      "song[album]":album, 
+      "song[genre]":genre, 
+      "song[year]":year, 
+      "song[ytURL]":video
+    }, function(data) {
+      errmsg = data;
+      
+      //document.getElementById("messages").innerHTML = "";
+    });
+  };

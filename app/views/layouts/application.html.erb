@@ -2,12 +2,13 @@
 <html>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" ref="/bower_components/bootstrap/dist/css/bootstrap.css">
-<script src="/assets/bootstrap.js"></script>
+<script src="/bower_components/bootstrap/js/bootstrap.js"></script>
 
 <head>
   <title>Muser</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :defaults %>  
   <%= csrf_meta_tags %>
 </head>
 <body>
