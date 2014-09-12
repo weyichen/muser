@@ -16,5 +16,6 @@
   ],
   "dependencies": {
     "bootstrap": "~3.2.0"
-  }
+  },
+  "directory": "vendor/assets/bower_components"
 }

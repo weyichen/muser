@@ -54,7 +54,7 @@
       
       <% if user_signed_in? %>
       <% if current_user.name == song.username%>
-        <td><a href="/songs/<%= song.id %>/edit"><image src ="/assets/edit.png" width=22 height=22></a></td>
+        <td><a href="/songs/<%= song.id %>/edit"><span class="glyphicon glyphicon-remove"></span> </a></td>
         <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
       <% else %>
         <td></td>

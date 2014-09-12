@@ -54,6 +54,3 @@
       //document.getElementById("messages").innerHTML = "";
     });
   };
-
-
-<image src ="/assets/edit.png" width=22 height=22>
