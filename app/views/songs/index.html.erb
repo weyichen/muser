@@ -2,6 +2,10 @@
 
 <table id="songtable" class="table table-hover">
   <tr>
+    <td id="msgtest" colspan=11>
+    </td>
+    </tr>
+  <tr>
     <td width=100>Art</td>
     <td>Track</td>
     <td>Artist</td>
@@ -15,13 +19,13 @@
     <td></td>
   </tr>
 
-  <tr>
+  <tr id="newbutton">
     <td colspan=11>
   <% if user_signed_in? %>
-<p class="text-center" id="newbutton"><a class="btn btn-primary btn" onclick="newTrack()">Add New Track</a></p>
-<% else %>
-<p class="text-center"> Please sign in or create an account to add tracks! </p>
-<% end %>
+  <p class="text-center"><a class="btn btn-primary btn" onclick="newTrack()">Add New Track</a></p>
+  <% else %>
+  <p class="text-center"> Please sign in or create an account to add tracks! </p>
+  <% end %>
 </td>
   </tr>
 
@@ -50,12 +54,12 @@
       <td><%= song.year %></td>
       <td><button class="btn btn-primary btn" data-toggle="modal" data-target="#<%= song.id %>Video">Watch Video</button></td>
       <td><%= song.rating %></td>
-      <td><%= song.username %></td>
+      <td><%= song.username %> <%= song.id %></td>
       
       <% if user_signed_in? %>
       <% if current_user.name == song.username%>
-        <td><a href="/songs/<%= song.id %>/edit"><span class="glyphicon glyphicon-remove"></span> </a></td>
-        <td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><image src ="/assets/remove.png" width=20 height=20></a></td>
+        <td><a href="/songs/<%= song.id %>/edit"><span class="glyphicon glyphicon-pencil"></span> </a></td>
+	<td><a href="/songs/<%= song.id %>/" data-method="delete" rel="nofollow"><span class="glyphicon glyphicon-remove"></span> </a></td>
       <% else %>
         <td></td>
         <td></td>

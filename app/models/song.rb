@@ -7,7 +7,7 @@ class Song < ActiveRecord::Base
   scope :rating1, -> { where('rating = 1')}
   
   # track and artist are minimal required attributes
-  validates :track, presence: true
+  validates :track, presence: true, length: { maximum: 100 }
   validates :artist, presence: true
   
   #validates :ytURL, format: { with: /^http:\/\/www.youtube.com\/watch/i , on: :create }

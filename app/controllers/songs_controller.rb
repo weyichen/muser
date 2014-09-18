@@ -9,12 +9,7 @@ class SongsController < ApplicationController
   end
 
   def new
-    #@songs = Song.all
-    #@rating5 = Song.rating5
-    #@rating42 = Song.rating42
-    #@rating1 = Song.rating1
-    
-    #@song = Song.new
+
   end
 
   def create
@@ -25,26 +20,20 @@ class SongsController < ApplicationController
         format.html { redirect_to @song, notice: 'Song was successfully added!' }
         format.js {}
         format.json { render json: @song, status: :created, location: @song }
+
+        # parse YouTube link to embed HTML code
+        embed = auto_html(@song.ytURL) {youtube(:width => 560, :height => 315)}
+        @song.update_attribute(:ytEmbed, embed)
       else
         format.html { render action: "new" }
         format.json { render json: @song.errors, status: :unprocessable_entity }
       end
     end
         
-    
-    #@songs = Song.all
-    #@rating5 = Song.rating5
-    #@rating42 = Song.rating42
-    #@rating1 = Song.rating1
-    
    # if @song.save
       # mark song as created by the current user
     #  @song.update_attribute(:user, current_user)
      # @song.update_attribute(:username, current_user[:name])
-      
-      # parse YouTube link to embed HTML code
-      #embed = auto_html(@song.ytURL) {youtube(:width => 560, :height => 315)}
-      #@song.update_attribute(:ytEmbed, embed)
     
       #redirect_to songs_path
     #else
@@ -93,4 +82,9 @@ class SongsController < ApplicationController
     @song.destroy
     redirect_to songs_path
   end
+
+  def clear
+    Song.delete_all
+  end
+
 end

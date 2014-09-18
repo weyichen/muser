@@ -17,6 +17,7 @@ YichenweiApp::Application.routes.draw do
   match 'get_songs' => 'songs#index'
   match 'add_song' => 'songs#create'
   match 'delete_song' => 'songs#destroy'
+  match 'clear_songs' => 'songs#clear'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
