@@ -2,13 +2,16 @@ require 'spec_helper'
 
 describe "Songs" do
 
-  describe "Home page" do
+  describe "Songs Index" do
 
-    it "should have the content 'Songs'" do
-      visit '/songs/index'
-      expect(page).to have_content('Sample App')
+    it "should have the title 'All Songs | Muser'" do
+      visit '/songs'
+      expect(page).to have_title('All Songs | Muser')
     end
   end
+
+  describe 
+
 end
 
 #require 'rails_helper'
