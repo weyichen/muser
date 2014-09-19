@@ -21,11 +21,14 @@ gem 'newrelic_rpm'
 group :development do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'spork-rails'
 end
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara'
+  gem 'libnotify', '0.8.0'
 end
 
 group :production do

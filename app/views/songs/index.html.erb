@@ -45,7 +45,13 @@
   
   <% @songs.each do |song| %>
     <tr>
-      <td><a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><img src=<%= song.artURL %> height="100", width="100"></a></td>
+      <td>
+	<% if song.artURL != "" %>
+	  <a data-toggle="modal" data-target="#<%= song.id %>Art" class="thumbnail"><%= image_tag song.artURL, size: "100x100" %></a>
+	<% else %>
+	  <a class="thumbnail"><%= image_tag "blankart.jpg", size: "100x100" %></a>
+	<% end %>
+      </td>
       <td><%= song.track %></td>
       <td><%= song.artist %></td>
       <td><%= song.album %></td>
