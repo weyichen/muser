@@ -175,7 +175,7 @@ PLATFORMS
 DEPENDENCIES
   aaronh-chronic
   auto_html
-  capybara (= 2.1.0)
+  capybara
   coffee-rails (~> 3.2.1)
   devise (= 3.2.2)
   jquery-rails
