@@ -1,32 +1,24 @@
 require 'spec_helper'
 
 describe "Songs" do
+  subject { page }
 
   describe "Songs Index" do
-
-    it "should have the title 'All Songs | Muser'" do
-      visit '/songs'
-      expect(page).to have_title('All Songs | Muser')
-    end
-
+    before { visit "/songs" }
+    it { should have_title('All Songs | Muser') }
   end
+
 end
 
 describe "Users" do
+  subject { page }
 
   describe "Users Index" do
-    
-    it "should have the title 'Muser'" do
-      visit '/users'
-      expect(page).to have_title('Muser')
-    end
-
-    it "should not have the |'" do
-      visit '/users'
-      expect(page).not_to have_title('| Muser')
-    end
-    
+    before { visit "/users" }
+    it { should have_title('Muser') }
+    it { should_not have_title('| Muser') }
   end
+
 end
 
 #require 'rails_helper'

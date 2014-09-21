@@ -27,7 +27,7 @@ end
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
-  gem 'capybara'
+  gem 'capybara', '2.4.2'
   gem 'libnotify', '0.8.0'
 end
 

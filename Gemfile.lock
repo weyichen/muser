@@ -37,7 +37,7 @@ GEM
     bcrypt-ruby (3.1.2)
     bcrypt-ruby (3.1.2-x86-mingw32)
     builder (3.0.4)
-    capybara (2.1.0)
+    capybara (2.4.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -225,7 +225,7 @@ PLATFORMS
 DEPENDENCIES
   aaronh-chronic
   auto_html
-  capybara
+  capybara (= 2.4.2)
   coffee-rails (~> 3.2.1)
   devise (= 3.2.2)
   guard-rspec
