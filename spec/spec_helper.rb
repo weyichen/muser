@@ -96,6 +96,12 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
 
+  # include these lines to require everything under spec/support
+  Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+  RSpec.configure do |config|
+    config.include ApplicationHelper
+  end
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

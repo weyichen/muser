@@ -29,6 +29,8 @@ group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.4.2'
   gem 'libnotify', '0.8.0'
+  gem 'factory_girl_rails'
+  gem 'bcrypt-ruby'
 end
 
 group :production do
