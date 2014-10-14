@@ -40,4 +40,15 @@ describe "User pages" do
 
   end
 
+  # TODO: implement login test
+  describe "login page" do
+    before { visit "/users/sign_in" }
+
+    it { should have_content('Sign in') }
+    it { should have_title (full_title('')) }
+
+    let(:submit) { "Sign up" }
+
+  end
+
 end
