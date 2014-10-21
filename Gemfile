@@ -8,6 +8,8 @@ gem 'auto_html'
 gem 'rake', '10.1.0'
 gem 'test-unit', '2.5.5'
 
+gem 'bootstrap-sass'
+
 # Homework 7: add a gem
 gem 'aaronh-chronic'
 
