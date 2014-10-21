@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: MyString
+  id: 1
   customer: MyString
   date: MyString
 
 two:
-  id: MyString
+  id: 2
   customer: MyString
   date: MyString

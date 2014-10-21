@@ -21,6 +21,7 @@
   <tr id="newbutton">
     <td colspan=11>
   <% if user_signed_in? %>
+  <%= current_user.name %>
   <p class="text-center"><a class="btn btn-primary btn" onclick="newTrack()">Add New Track</a></p>
   <% else %>
   <p class="text-center"> Please sign in or create an account to add tracks! </p>

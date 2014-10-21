@@ -24,6 +24,11 @@ class SongsController < ApplicationController
         # parse YouTube link to embed HTML code
         embed = auto_html(@song.ytURL) {youtube(:width => 560, :height => 315)}
         @song.update_attribute(:ytEmbed, embed)
+
+        # mark song as created by the current user
+        @song.update_attribute(:user, current_user)
+        @song.update_attribute(:username, current_user[:name])
+ 
       else
         format.html { render action: "new" }
         format.json { render json: @song.errors, status: :unprocessable_entity }

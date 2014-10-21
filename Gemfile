@@ -3,11 +3,10 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '3.2.13'
-
 gem 'devise', '3.2.2'
-
-gem "auto_html"
-
+gem 'auto_html'
+gem 'rake', '10.1.0'
+gem 'test-unit', '2.5.5'
 
 # Homework 7: add a gem
 gem 'aaronh-chronic'
